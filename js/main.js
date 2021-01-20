@@ -37,14 +37,18 @@ const getUsersWithGender = (users, gender) =>
 console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
 
 // Задание 4
-
 // Получить массив только неактивных пользователей(поле isActive).
 
-// const getInactiveUsers = users => {
-//     // твой код
-// };
+const getInactiveUsers = (users) =>
+  users
+    .filter(function (user) {
+      return !user.isActive;
+    })
+    .map(function (user) {
+      return user.name;
+    });
 
-// console.log(getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
+console.log(getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
 // Задание 5
 
