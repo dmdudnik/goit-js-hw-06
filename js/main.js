@@ -22,14 +22,19 @@ const getUsersWithEyeColor = (users, color) =>
 console.log(getUsersWithEyeColor(users, "blue")); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
 
 // Задание 3
-
 // Получить массив имен пользователей по полу(поле gender).
 
-// const getUsersWithGender = (users, gender) => {
-//     // твой код
-// };
+const getUsersWithGender = (users, gender) =>
+  users
+    .filter(function (user) {
+      return user.gender === gender;
+    })
 
-// console.log(getUsersWithGender(users, 'male')); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
+    .map(function (user) {
+      return user.name;
+    });
+
+console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazquez', 'Carey Barr', 'Blackburn Dotson' ]
 
 // Задание 4
 
