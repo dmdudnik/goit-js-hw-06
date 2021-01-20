@@ -40,26 +40,25 @@ console.log(getUsersWithGender(users, "male")); // [ 'Moore Hensley', 'Ross Vazq
 // Получить массив только неактивных пользователей(поле isActive).
 
 const getInactiveUsers = (users) =>
-  users
-    .filter(function (user) {
-      return !user.isActive;
-    })
-    .map(function (user) {
-      return user.name;
-    });
+  users.filter((user) => !user.isActive).map((user) => user.name);
 
 console.log(getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
 // Задание 5
-
 // Получить пользоваля(не массив) по email(поле email, он уникальный).
 
-// const getUserWithEmail = (users, email) => {
-//     // твой код
-// };
+const getUserWithEmail = (users, email) =>
+  users
+    .find(function (user) {
+      return user.email === email;
+    })
 
-// console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
-// console.log(getUserWithEmail(users, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
+    .map(function (user) {
+      return user.name;
+    });
+
+console.log(getUserWithEmail(users, "shereeanthony@kog.com")); // {объект пользователя Sheree Anthony}
+console.log(getUserWithEmail(users, "elmahead@omatom.com")); // {объект пользователя Elma Head}
 
 // Задание 6
 
