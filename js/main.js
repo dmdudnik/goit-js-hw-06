@@ -1,22 +1,25 @@
-import { default as userList } from "./users.js";
+import users from "./users.js";
 
 //Задание 1
-
 //Получить массив имен всех пользователей(поле name).
 
-const getUserNames = userList.map((users) => users.name);
-console.log(getUserNames);
-// [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
+const getUserNames = users.map((user) => user.name);
+console.log(getUserNames); // [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
 
 // Задание 2
-
 // Получить массив объектов пользователей по цвету глаз(поле eyeColor).
 
-// const getUsersWithEyeColor = (users, color) => {
-//     // твой код
-// };
+const getUsersWithEyeColor = (users, color) =>
+  users
+    .filter(function (user) {
+      return user.eyeColor === color;
+    })
 
-// console.log(getUsersWithEyeColor(users, 'blue')); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
+    .map(function (user) {
+      return user.name;
+    });
+
+console.log(getUsersWithEyeColor(users, "blue")); // [объект Moore Hensley, объект Sharlene Bush, объект Carey Barr]
 
 // Задание 3
 
