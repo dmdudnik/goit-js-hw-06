@@ -48,14 +48,8 @@ console.log(getInactiveUsers(users)); // [объект Moore Hensley, объек
 // Получить пользоваля(не массив) по email(поле email, он уникальный).
 
 // const getUserWithEmail = (users, email) =>
-//   users
-//     .find(function (user) {
-//       return user.email === email;
-//     })
-
-//     .map(function (user) {
-//       return user.name;
-//     });
+//   users.find((user) => user.email === email)
+//     .map((user) => user.name);
 
 // console.log(getUserWithEmail(users, "shereeanthony@kog.com")); // {объект пользователя Sheree Anthony}
 // console.log(getUserWithEmail(users, "elmahead@omatom.com")); // {объект пользователя Elma Head}
@@ -78,11 +72,12 @@ console.log(getUsersWithAge(users, 30, 40));
 
 // Получить общую сумму баланса(поле balance) всех пользователей.
 
-// const calculateTotalBalance = users => {
-//     // твой код
-// };
+const calculateTotalBalance = (users) =>
+  users.reduce(function (balanced, user) {
+    return balanced + user.balance;
+  }, 0);
 
-// console.log(calculateTotalBalance(users)); // 20916
+console.log(calculateTotalBalance(users)); // 20916
 
 // Задание 8
 
