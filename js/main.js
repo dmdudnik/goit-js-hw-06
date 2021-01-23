@@ -47,75 +47,89 @@ console.log(getInactiveUsers(users)); // [объект Moore Hensley, объек
 // Задание 5
 // Получить пользоваля(не массив) по email(поле email, он уникальный).
 
-// const getUserWithEmail = (users, email) =>
-//   users.find((user) => user.email === email)
-//     .map((user) => user.name);
+const getUserWithEmail = (users, email) =>
+  users
+    .filter(function (user) {
+      return user.email === email;
+    })
 
-// console.log(getUserWithEmail(users, "shereeanthony@kog.com")); // {объект пользователя Sheree Anthony}
-// console.log(getUserWithEmail(users, "elmahead@omatom.com")); // {объект пользователя Elma Head}
+    .map(function (user) {
+      return user.name;
+    });
+
+console.log(getUserWithEmail(users, "shereeanthony@kog.com")); // {объект пользователя Sheree Anthony}
+console.log(getUserWithEmail(users, "elmahead@omatom.com")); // {объект пользователя Elma Head}
 
 // Задание 6
 
 // Получить массив пользователей попадающих в возрастную категорию от min до max лет(поле age).
 
-// const getUsersWithAge = (users, min, max) =>
-//   users
-//     .filter((user) => user.age >= min && user.age <= max)
-//     .map((user) => user.name);
+const getUsersWithAge = (users, min, max) =>
+  users
+    .filter((user) => user.age >= min && user.age <= max)
+    .map((user) => user.name);
 
-// console.log(getUsersWithAge(users, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
+console.log(getUsersWithAge(users, 20, 30)); // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
 
-// console.log(getUsersWithAge(users, 30, 40));
-// // [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]
+console.log(getUsersWithAge(users, 30, 40));
+// [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]
 
 // Задание 7
 
 // Получить общую сумму баланса(поле balance) всех пользователей.
 
-// const calculateTotalBalance = (users) =>
-//   users.reduce(function (balanced, user) {
-//     return balanced + user.balance;
-//   }, 0);
+const calculateTotalBalance = (users) =>
+  users.reduce(function (balanced, user) {
+    return balanced + user.balance;
+  }, 0);
 
-// console.log(calculateTotalBalance(users)); // 20916
+console.log(calculateTotalBalance(users)); // 20916
 
 // Задание 8
 
 // Массив имен всех пользователей у которых есть друг с указанным именем.
 
-// const getUsersWithFriend = (users, friendName) =>
-//   users
-//     .filter(function (user) {
-//       return user.friends === friendName;
-//     })
+const getUsersWithFriend = (users, friendName) =>
+  users
+    .filter(function (user) {
+      return user.friends.includes(friendName);
+    })
+    .map(function (user) {
+      return user.name;
+    });
 
-//     .map(function (user) {
-//       return user.name;
-//     });
-
-// console.log(getUsersWithFriend(users, "Briana Decker")); // [ 'Sharlene Bush', 'Sheree Anthony' ]
-// console.log(getUsersWithFriend(users, "Goldie Gentry")); // [ 'Elma Head', 'Sheree Anthony' ]
+console.log(getUsersWithFriend(users, "Briana Decker")); // [ 'Sharlene Bush', 'Sheree Anthony' ]
+console.log(getUsersWithFriend(users, "Goldie Gentry")); // [ 'Elma Head', 'Sheree Anthony' ]
 
 //Задание 9
 
 //Массив имен(поле name) людей, отсортированных в зависимости от количества их друзей(поле friends)
 
-// const getNamesSortedByFriendsCount = (users) =>
+const getNamesSortedByFriendsCount = (users) =>
+  users
+    .filter(function (user) {
+      return user.friends;
+    })
 
-//   const priceAscCompare = (a, b) => a.friends - b.friends;
-//   const itemsByAscendingPrice = items
-//   .slice()
-//   .sort(priceAscCompare);
-//   console.log(getNamesSortedByFriendsCount(users));
-// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+    .sort()
+    .map(function (user) {
+      return user.name;
+    });
+console.log(getNamesSortedByFriendsCount(users)); //[ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
 
 // Задание 10
 
 // Получить массив всех умений всех пользователей(поле skills), при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 
-// const getSortedUniqueSkills = users => {
-//     // твой код
-// };
+const getSortedUniqueSkills = (users) =>
+  users
+    .flatMap(function (user) {
+      return user.skills;
+    })
 
-// console.log(getSortedUniqueSkills(users));
-// // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+    .filter((user, index, arr) => {
+      return arr.indexOf(user) === index;
+    })
+    .sort();
+
+console.log(getSortedUniqueSkills(users)); // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
